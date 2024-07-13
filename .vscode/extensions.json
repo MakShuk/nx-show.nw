@@ -1,7 +1,10 @@
 {
   "recommendations": [
+    // Расширение для работы с Angular Console
     "nrwl.angular-console",
+    // Расширение для форматирования кода с помощью Prettier
     "esbenp.prettier-vscode",
+    // Расширение для запуска тестов с помощью Jest
     "firsttris.vscode-jest-runner"
   ]
 }

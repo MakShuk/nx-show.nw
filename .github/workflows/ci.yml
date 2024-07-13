@@ -1,28 +1,43 @@
+# Определение имени для данного workflow. В данном случае, это "CI" (Continuous Integration).
 name: CI
 
+# Определение событий, которые будут запускать данный workflow.
 on:
+  # Workflow запускается при событии push (отправка изменений в репозиторий).
   push:
+    # Указываем, что это событие должно происходить только при отправке в ветку "main".
     branches:
       - main
+  # Workflow также запускается при событии pull_request (создание или изменение pull request).
   pull_request:
 
+# Настройка разрешений для данного workflow.
 permissions:
+  # Разрешение на чтение действий (actions).
   actions: read
+  # Разрешение на чтение содержимого репозитория (contents).
   contents: read
 
 jobs:
+  # Определение задания (job) с именем "main".
   main:
+    # Указывает, что это задание должно выполняться на последней версии Ubuntu.
     runs-on: ubuntu-latest
+
+    # Определение шагов (steps), которые должны быть выполнены в рамках задания.
     steps:
+      # Использует готовое действие (action) для проверки кода из репозитория.
       - uses: actions/checkout@v4
+        # Дополнительные параметры для действия.
         with:
+          # Указывает, что нужно клонировать весь git-репозиторий, а не только последний коммит.
           fetch-depth: 0
 
-      # Connect your workspace on nx.app and uncomment this to enable task distribution.
-      # The "--stop-agents-after" is optional, but allows idle agents to shut down once the "build" targets have been requested
+      # Подключите свое рабочее пространство на nx.app и раскомментируйте эту строку, чтобы включить распределение задач.
+      # "--stop-agents-after" является необязательным, но позволяет простаивающим агентам выключаться после выполнения целей "build"
       # - run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js" --stop-agents-after="build"
 
-      # Cache node_modules
+      # Кэшировать узловые модули
       - uses: actions/setup-node@v3
         with:
           node-version: 20
@@ -31,6 +46,6 @@ jobs:
       - run: npm ci
       - uses: nrwl/nx-set-shas@v4
 
-      # Prepend any command with "nx-cloud record --" to record its logs to Nx Cloud
-      # - run: npx nx-cloud record -- echo Hello World
+      # Добавляйте к любой команде "nx-cloud record --", чтобы записать ее логи в Nx Cloud
+      # - запуск: npx nx-cloud record -- echo Hello Worl
       - run: npx nx affected -t lint test build
