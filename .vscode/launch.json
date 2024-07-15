@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Attach to Server",
+      "port": 9229,
+      "restart": true,
+      "request": "attach",
+      "type": "node",
+      "cwd": "${workspaceFolder}/dist/projects/backend"
+    }
+  ]
+}
+//node --inspect C:\development\Nx\show.nw\dist\projects\backend\main.js
