@@ -1,20 +1,22 @@
 {
-  "compileOnSave": false, // Компилировать при сохранении выключено
+  "compileOnSave": false,
   "compilerOptions": {
-    "rootDir": ".", // Корневая директория проекта
-    "sourceMap": true, // Генерировать файлы карты исходного кода
-    "declaration": false, // Генерировать файлы объявлений типов
-    "moduleResolution": "node", // Разрешение модулей в стиле Node.js
-    "emitDecoratorMetadata": true, // Генерировать метаданные для декораторов
-    "experimentalDecorators": true, // Включить экспериментальные декораторы
-    "importHelpers": true, // Импортировать вспомогательные функции
-    "target": "es2015", // Целевая версия ECMAScript
-    "module": "esnext", // Формат модулей
-    "lib": ["es2020", "dom"], // Библиотеки для компиляции
-    "skipLibCheck": true, // Пропустить проверку библиотек
-    "skipDefaultLibCheck": true, // Пропустить проверку стандартных библиотек
-    "baseUrl": ".", // Базовый URL для разрешения модулей
-    "paths": {} // Пути для разрешения модулей
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@show.nw/interfaces": ["interfaces/src/index.ts"]
+    }
   },
-  "exclude": ["node_modules", "tmp"] // Исключить директории из компиляции
+  "exclude": ["node_modules", "tmp"]
 }
