@@ -8,4 +8,6 @@ export interface IUser {
   displayName: string;
   passwordHash: string;
   role: UserRole;
+  email: string;
+  siteSettings: Record<string, any>;
 }

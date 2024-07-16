@@ -22,6 +22,9 @@ export class User extends Document implements IUser {
     type: String,
   })
   role: UserRole;
+
+  @Prop()
+  siteSettings: Record<string, any>;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
