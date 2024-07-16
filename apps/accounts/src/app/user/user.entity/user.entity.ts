@@ -1,9 +1,7 @@
 import { IUser, UserRole } from "@show.nw/interfaces";
 import { compare, genSalt, hash } from 'bcryptjs';
 
-
-
-export  class User implements IUser {
+export  class UserEntity implements IUser {
   _id?: string;
   displayName: string;
   passwordHash: string;
@@ -29,5 +27,4 @@ export  class User implements IUser {
   public validatePassword(password: string) {
     return compare(password, this.passwordHash);
   }
-  
 }
