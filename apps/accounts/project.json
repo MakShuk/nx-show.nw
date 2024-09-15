@@ -5,7 +5,7 @@
   "projectType": "application",
   "tags": [],
   "targets": {
-    "serve": {
+    "accounts": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "options": {

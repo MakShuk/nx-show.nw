@@ -7,7 +7,6 @@ export  class UserEntity implements IUser {
   passwordHash: string;
   role: UserRole;
   email: string;
-  siteSettings: Record<string, any>;
 
   constructor(user: IUser) {
     this._id = user._id;
@@ -15,7 +14,6 @@ export  class UserEntity implements IUser {
     this.displayName = user.displayName;
     this.role = user.role;
     this.email = user.email;
-    this.siteSettings = user.siteSettings;
   }
 
   public async setPassword(password: string) {
@@ -28,3 +26,4 @@ export  class UserEntity implements IUser {
     return compare(password, this.passwordHash);
   }
 }
+ 

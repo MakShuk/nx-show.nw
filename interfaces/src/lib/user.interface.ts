@@ -9,5 +9,4 @@ export interface IUser {
   passwordHash: string;
   role: UserRole;
   email: string;
-  siteSettings: Record<string, any>;
 }
