@@ -5,6 +5,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { getMongoConfig } from './configs/mongo.config';
 import { JwtModule } from '@nestjs/jwt';
 import { getJWTConfig } from './configs/jwt.config';
+import { RMQModule } from 'nestjs-rmq';
+import { getRMQConfig } from './configs/rmq.config';
 
 @Module({
   imports: [
@@ -12,6 +14,7 @@ import { getJWTConfig } from './configs/jwt.config';
       isGlobal: true,
       envFilePath: 'envs/.accounts.env',
     }),
+    RMQModule.forRootAsync(getRMQConfig()),
     JwtModule.registerAsync(getJWTConfig()),
     MongooseModule.forRootAsync(getMongoConfig()),
     UserModule,

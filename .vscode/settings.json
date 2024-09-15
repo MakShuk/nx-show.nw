@@ -1,6 +1,7 @@
 {
   "cSpell.words": [
-    "AUTHDATABASE"
+    "AUTHDATABASE",
+    "IRMQ"
   ],
   "files.exclude": {
     "**/.git": true,

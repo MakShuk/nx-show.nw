@@ -14,6 +14,7 @@
     "axios": "^1.6.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.5.1",
+    "nestjs-rmq": "^2.13.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0",
     "tslib": "^2.3.0"
