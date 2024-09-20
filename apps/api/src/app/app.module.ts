@@ -5,18 +5,16 @@ import { RMQModule } from 'nestjs-rmq';
 import { getRMQConfig } from './configs/rmq.config';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
+import { getJWTConfig } from './configs/jwt.config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ envFilePath: 'envs/.api.env', isGlobal: true }),
     RMQModule.forRootAsync(getRMQConfig()),
-    JwtModule.register(getJwtConfig()),
-    PassportModule
+    JwtModule.register(getJWTConfig()),
+    PassportModule,
   ],
   controllers: [AuthController],
   providers: [],
 })
 export class AppModule {}
-function getJwtConfig(): import('@nestjs/jwt').JwtModuleOptions {
-  throw new Error('Function not implemented.');
-}
