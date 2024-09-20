@@ -1,8 +1,17 @@
+import { IsEmail, IsString, MaxLength, MinLength } from 'class-validator';
+
 export namespace AccountLogin {
-  export const topic = 'account.login.login';
+  export const topic = 'account.login.command';
   export class Request {
+    @IsEmail()
     email: string;
+    @IsString()
+    @MinLength(8)
+    @MaxLength(40)
     password: string;
+    @IsString()
+    @MinLength(4)
+    @MaxLength(40)
     displayName: string;
   }
 
