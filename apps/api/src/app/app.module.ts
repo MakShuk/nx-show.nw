@@ -6,6 +6,7 @@ import { getRMQConfig } from './configs/rmq.config';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { getJWTConfig } from './configs/jwt.config';
+import { UserController } from './controllers/user.controller';
 
 @Module({
   imports: [
@@ -14,7 +15,7 @@ import { getJWTConfig } from './configs/jwt.config';
     JwtModule.register(getJWTConfig()),
     PassportModule,
   ],
-  controllers: [AuthController],
+  controllers: [AuthController, UserController],
   providers: [],
 })
 export class AppModule {}

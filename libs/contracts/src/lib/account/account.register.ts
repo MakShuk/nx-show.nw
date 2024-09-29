@@ -1,4 +1,10 @@
-import { IsEmail, IsString, MaxLength, MinLength } from 'class-validator';
+import {
+  IsEmail,
+  IsOptional,
+  IsString,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
 
 export namespace AccountRegister {
   export const topic = 'account.register.command';
@@ -9,10 +15,12 @@ export namespace AccountRegister {
     @MinLength(8)
     @MaxLength(40)
     password: string;
+
+    @IsOptional()
     @IsString()
     @MinLength(4)
     @MaxLength(40)
-    displayName: string;
+    displayName?: string;
   }
 
   export class Response {
