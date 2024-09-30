@@ -26,7 +26,7 @@ export class AuthService {
     }).setPassword(password);
     const newUser = await this.userRepository.createUser(newUserEntity);
     return { email: newUser.email };
-  }
+  }   
 
   async validateUser(email: string, password: string) {
     const user = await this.userRepository.findUser(email);
