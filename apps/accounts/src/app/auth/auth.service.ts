@@ -13,7 +13,7 @@ export class AuthService {
   ) {}
 
   async register({ email, displayName, password }: AccountRegister.Request) {
-    const oldUser = this.userRepository.findUser(email);
+    const oldUser = await this.userRepository.findUser(email);
     if (oldUser) {
       throw new Error('User already exists');
     }
@@ -26,7 +26,7 @@ export class AuthService {
     }).setPassword(password);
     const newUser = await this.userRepository.createUser(newUserEntity);
     return { email: newUser.email };
-  }   
+  }
 
   async validateUser(email: string, password: string) {
     const user = await this.userRepository.findUser(email);
