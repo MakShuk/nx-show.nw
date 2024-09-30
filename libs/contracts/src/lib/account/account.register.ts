@@ -12,7 +12,7 @@ export namespace AccountRegister {
     @IsEmail()
     email: string;
     @IsString()
-    @MinLength(8)
+    @MinLength(4)
     @MaxLength(40)
     password: string;
 

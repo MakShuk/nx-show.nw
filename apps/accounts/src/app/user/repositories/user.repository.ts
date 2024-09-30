@@ -12,7 +12,10 @@ export class UserRepository {
 
   async createUser(user: UserEntity) {
     const newUser = new this.userModel(user);
-    return newUser.save();
+    console.log(newUser);
+    newUser.id = 1;
+    const result = await newUser.save();
+    return result;
   }
 
   async updateUser({ _id, ...rest }: UserEntity) {

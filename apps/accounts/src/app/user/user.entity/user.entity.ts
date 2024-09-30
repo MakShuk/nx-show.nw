@@ -1,7 +1,8 @@
-import { IUser, UserRole } from "@show.nw/interfaces";
+import { IUser, UserRole } from '@show.nw/interfaces';
 import { compare, genSalt, hash } from 'bcryptjs';
+import { Types } from 'mongoose';
 
-export  class UserEntity implements IUser {
+export class UserEntity implements IUser {
   _id?: string;
   displayName: string;
   passwordHash: string;
@@ -9,7 +10,7 @@ export  class UserEntity implements IUser {
   email: string;
 
   constructor(user: IUser) {
-    this._id = user._id;
+    this._id = new Types.ObjectId().toString();
     this.passwordHash = user.passwordHash;
     this.displayName = user.displayName;
     this.role = user.role;
@@ -26,4 +27,3 @@ export  class UserEntity implements IUser {
     return compare(password, this.passwordHash);
   }
 }
- 
