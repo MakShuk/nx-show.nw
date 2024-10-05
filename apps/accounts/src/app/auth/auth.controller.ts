@@ -25,6 +25,7 @@ export class AuthController {
   async register(
     @Body() registerDto: AccountRegister.Request
   ): Promise<AccountRegister.Response> {
+    console.log('registerDto', registerDto);
     return this.authService.register(registerDto);
   }
 }
