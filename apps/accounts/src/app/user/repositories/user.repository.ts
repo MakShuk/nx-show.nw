@@ -12,8 +12,6 @@ export class UserRepository {
 
   async createUser(user: UserEntity) {
     const newUser = new this.userModel(user);
-    console.log(newUser);
-    newUser.id = 1;
     const result = await newUser.save();
     return result;
   }

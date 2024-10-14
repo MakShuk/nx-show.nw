@@ -13,7 +13,13 @@ export const getRMQConfig = (): IRMQServiceAsyncOptions => ({
         host: configService.get('AMQP_HOSTNAME') ?? '',
       },
     ],
-    queueName: 'show.queue',
-    logMessages: true
+    // Имя очереди, получаемое из конфигурации
+    queueName: configService.get('AMQP_QUEUE') ?? '',
+    // Указывает, что очередь устойчивая
+    durable: true,
+    // Указывает, что сообщения должны быть подтверждены вручную
+    // noAck: false,
+    prefetchCount: 32,
+    serviceName: 'account',
   }),
 });

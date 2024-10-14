@@ -17,7 +17,7 @@ export class AuthController {
       loginDto.email,
       loginDto.password
     );
-    return this.authService.login(id);
+    return await this.authService.login(id);
   }
 
   @RMQValidate()
@@ -25,7 +25,6 @@ export class AuthController {
   async register(
     @Body() registerDto: AccountRegister.Request
   ): Promise<AccountRegister.Response> {
-    console.log('registerDto', registerDto);
     return this.authService.register(registerDto);
   }
 }

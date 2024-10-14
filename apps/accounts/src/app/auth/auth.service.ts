@@ -38,7 +38,7 @@ export class AuthService {
     if (!isCorrectPassword) {
       throw new Error(`Login or password is incorrect`);
     }
-    return { id: user._id, email: user.email, role: user.role };
+    return { id: user._id };
   }
 
   async login(id: string) {

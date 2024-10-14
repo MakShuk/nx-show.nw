@@ -12,10 +12,10 @@ export class AuthController {
   @Post('register')
   async register(@Body() dto: RegisterDto) {
     try {
-      return await this.sendRegisterRequest(dto);
-      /*   return await this.handleRMQRouteError(() =>
+      //return await this.sendRegisterRequest(dto);
+      return await this.handleRMQRouteError(() =>
         this.sendRegisterRequest(dto)
-      ); */
+      );
     } catch (e) {
       if (e instanceof Error) {
         throw new UnauthorizedException(e.message);
@@ -27,7 +27,7 @@ export class AuthController {
   async login(@Body() dto: LoginDto) {
     try {
       // return await this.sendLoginRequest(dto);
-      await this.handleRMQRouteError(() => this.sendLoginRequest(dto));
+     return await this.handleRMQRouteError(() => this.sendLoginRequest(dto));
     } catch (e) {
       if (e instanceof Error) {
         throw new UnauthorizedException(e.message);
@@ -38,9 +38,7 @@ export class AuthController {
   private async sendRegisterRequest(
     dto: RegisterDto
   ): Promise<AccountRegister.Response> {
-    const options: IPublishOptions = {
-      
-    };
+    const options: IPublishOptions = {};
     return await this.rmqService.send<
       AccountRegister.Request,
       AccountRegister.Response
@@ -66,10 +64,8 @@ export class AuthController {
         e instanceof Error &&
         e.message === `Requested service doesn't have RMQRoute with this path`
       ) {
-        console.log('Retrying...');
+        console.warn('Retrying...');
         i--;
-        /*     const res = await fn();
-        console.log(res); */
         return await fn();
       }
       throw e;

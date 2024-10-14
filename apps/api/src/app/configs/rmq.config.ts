@@ -13,7 +13,9 @@ export const getRMQConfig = (): IRMQServiceAsyncOptions => ({
         host: configService.get('AMQP_HOSTNAME') ?? '',
       },
     ],
-    queueName: 'show.queue',
-    //logMessages: true,
+    queueName: configService.get('AMQP_QUEUE') ?? '',
+    durable: true,
+    noAck: false,
+    serviceName: 'account',
   }),
 });
