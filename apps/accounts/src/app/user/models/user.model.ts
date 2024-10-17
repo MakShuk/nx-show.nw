@@ -1,6 +1,20 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { IUser, UserRole } from '@show.nw/interfaces';
+import {
+  IUser,
+  IUserSettings,
+  PurchaseState,
+  UserRole,
+} from '@show.nw/interfaces';
 import { Document } from 'mongoose';
+
+@Schema()
+export class UserSettings extends Document implements IUserSettings {
+  purchaseState: PurchaseState;
+  endDate: Date;
+  status: string;
+}
+
+export const UserSettingsSchema = SchemaFactory.createForClass(UserSettings);
 
 @Schema()
 export class User extends Document implements IUser {
@@ -22,6 +36,12 @@ export class User extends Document implements IUser {
     type: String,
   })
   role: UserRole;
+
+  @Prop({
+    type: [UserSettingsSchema],
+    _id: false,
+  })
+  settings: UserSettings;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

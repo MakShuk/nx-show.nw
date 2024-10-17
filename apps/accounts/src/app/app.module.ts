@@ -6,6 +6,8 @@ import { getMongoConfig } from './configs/mongo.config';
 import { RMQModule } from 'nestjs-rmq';
 import { getRMQConfig } from './configs/rmq.config';
 import { AuthModule } from './auth/auth.module';
+import { UserCommands } from './user/user.commands';
+import { UserQueries } from './user/user.queries';
 
 @Module({
   imports: [
@@ -18,6 +20,6 @@ import { AuthModule } from './auth/auth.module';
     UserModule,
     AuthModule,
   ],
-  providers: [],
+  providers: [UserCommands, UserQueries],
 })
 export class AppModule {}
