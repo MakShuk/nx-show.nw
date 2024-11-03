@@ -14,8 +14,13 @@ export const getRMQConfig = (): IRMQServiceAsyncOptions => ({
       },
     ],
     queueName: configService.get('AMQP_QUEUE') ?? '',
-    durable: true,
-    noAck: false,
-    serviceName: 'account',
+    prefetchCount: 32,
+    serviceName: 'api',
+    // Указываем только те паттерны, которые нужны этому сервису
+    bindings: [
+      {
+        routingKey: 'api.*', // Пример другого паттерна
+      },
+    ],
   }),
 });

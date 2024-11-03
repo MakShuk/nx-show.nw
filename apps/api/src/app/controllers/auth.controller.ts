@@ -1,7 +1,7 @@
 import { Body, Controller, Post, UnauthorizedException } from '@nestjs/common';
 import { AccountLogin } from '@show.nw/contracts';
 import { AccountRegister } from '@show.nw/contracts';
-import { IPublishOptions, RMQService } from 'nestjs-rmq';
+import { IPublishOptions, RMQRoute, RMQService, RMQValidate } from 'nestjs-rmq';
 import { RegisterDto } from '../dtos/register.dto';
 import { LoginDto } from '../dtos/login.dto';
 
@@ -26,14 +26,15 @@ export class AuthController {
   @Post('login')
   async login(@Body() dto: LoginDto) {
     try {
-      // return await this.sendLoginRequest(dto);
-     return await this.handleRMQRouteError(() => this.sendLoginRequest(dto));
+      return await this.sendLoginRequest(dto);
+      /*      return await this.handleRMQRouteError(() => this.sendLoginRequest(dto)); */
     } catch (e) {
       if (e instanceof Error) {
         throw new UnauthorizedException(e.message);
       }
     }
   }
+
 
   private async sendRegisterRequest(
     dto: RegisterDto

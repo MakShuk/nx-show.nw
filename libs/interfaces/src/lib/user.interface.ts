@@ -3,13 +3,6 @@ export enum UserRole {
   user = 'user',
 }
 
-export enum PurchaseState {
-  Started = 'Started',
-  WaitingForPayment = 'WaitingForPayment',
-  Purchased = 'Purchased',
-  Cancelled = 'Cancelled',
-}
-
 export interface IUser {
   _id?: string;
   displayName: string;
@@ -20,8 +13,5 @@ export interface IUser {
 }
 
 export interface IUserSettings {
-  status: string;
-  purchaseState: PurchaseState;
-  endDate: Date;
-
+   likesPostId: string[];
 }

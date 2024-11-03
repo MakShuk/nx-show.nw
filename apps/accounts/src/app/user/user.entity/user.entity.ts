@@ -1,4 +1,4 @@
-import { IUser, UserRole } from '@show.nw/interfaces';
+import { IUser, IUserSettings, UserRole } from '@show.nw/interfaces';
 import { compare, genSalt, hash } from 'bcryptjs';
 import { Types } from 'mongoose';
 
@@ -8,6 +8,7 @@ export class UserEntity implements IUser {
   passwordHash: string;
   role: UserRole;
   email: string;
+  settings?: IUserSettings;
 
   constructor(user: IUser) {
     this._id = new Types.ObjectId().toString();
@@ -15,6 +16,7 @@ export class UserEntity implements IUser {
     this.displayName = user.displayName;
     this.role = user.role;
     this.email = user.email;
+    this.settings = user.settings;
   }
 
   public async setPassword(password: string) {
